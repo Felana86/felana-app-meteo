@@ -23,6 +23,7 @@ body {
   margin: 0 auto;
   background: url(ressources/gradient.jpg);
   background-size: cover;
+  position: relative;
 }
 
 h1 {
@@ -30,7 +31,6 @@ h1 {
   font-size: 30px;
   font-weight: 400;
   text-align: center;
-  position: relative;
 }
 
 h1 span {
@@ -52,7 +52,7 @@ h1 span {
   border-radius: 50%;
 }
 
-.block-info {
+.bloc-info {
   text-align: center;
 }
 
@@ -75,7 +75,6 @@ h1 span {
   border-bottom-left-radius: 10px;
   padding: 30px 20px 20px;
   background: #fff;
-  position: relative;
 }
 
 .tabs {
@@ -110,9 +109,100 @@ h1 span {
   display: grid;
 }
 
+.forecast {
+  display: none;
+}
+
 .day-forecast,
 .hour-forecast {
   grid-area: 1 / 1 / 2 / 2;
-  display: grid;
   grid-template-columns: repeat(7, 1fr);
+}
+
+.day-forecast.active,
+.hour-forecast.active {
+  display: grid;
+}
+
+.forecast-block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 15px 0;
+  position: relative;
+}
+
+.forecast-block p {
+  padding: 0 5px;
+}
+
+.forecast-blockp:nth-child(2) {
+  margin-top: 10px;
+}
+
+.hour-name,
+.day-name {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.hour-temp,
+.day-temp {
+  font-weight: 400;
+  columns: gray;
+}
+
+.forecast-block:not(:last-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 50px;
+  right: 0;
+  background: #d7d7d7;
+}
+
+.loader {
+  position: absolute;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  background: #f1f1f1;
+  text-align: center;
+  font-size: 18px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: visibility 0s 0.8s ease-out, opacity 0.4s 0.4s ease-out;
+}
+
+.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #111;
+  margin: 0 3px;
+  animation: load 0.3s infinite ease-out alternate;
+}
+.dot:nth-child(2) {
+  animation-delay:  0.1s;
+}
+.dot:nth-child(3) {
+  animation-delay:  0.2s;
+}
+@keyframes load {
+  to {
+    transform: translateY(10px);
+  }
 }
